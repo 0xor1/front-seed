@@ -1,0 +1,62 @@
+@import "global";
+
+.mh-def{
+  @include default();
+}
+
+.mh-fill{
+  @include fill();
+}
+
+.mh-row{
+  flex-direction: row;
+}
+
+.mh-theme{
+  @include theme();
+}
+
+.mh-btn{
+  cursor: pointer;
+}
+
+.mh-ellip{
+  @include ellipsis();
+}
+
+@keyframes mh-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mh-rotate {
+  animation: mh-rotate 2s linear infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: $scrollbarTrackColor;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: $scrollbarThumbColor;
+}
+
+::-webkit-scrollbar-corner{
+  background: $scrollbarTrackColor;
+}
+
+::-webkit-scrollbar-track{
+  background: $scrollbarTrackColor;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+

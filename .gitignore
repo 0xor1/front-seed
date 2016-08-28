@@ -1,0 +1,16 @@
+src/**/*.css
+src/**/*.js
+src/**/*.js.map
+src/**/*.exe
+build/
+node_modules/
+test/unit/coverage
+test/unit/results
+test/e2e/results
+
+!src/client/lib/**/*.js
+
+npm-debug.log
+*.DS_Store
+.sass-cache/
+.idea/
