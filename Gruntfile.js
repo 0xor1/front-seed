@@ -9,7 +9,7 @@ module.exports = function(grunt){
                 sfx: true,
                 baseURL: 'src/client',
                 configFile: "src/client/system.conf.js",
-                minify: true,
+                minify: false,
                 build: {
                     mangle: false
                 }
@@ -17,7 +17,7 @@ module.exports = function(grunt){
             test: {
                 files: [{
                     "src":  "main.js",
-                    "dest": "src/client/main.min.js"
+                    "dest": "src/client/main.build.js"
                 }]
             }
         },
