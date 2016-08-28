@@ -4,14 +4,14 @@
         <title>test</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <!-- build:js main.min.js -->
-        <script src="lib/systemjs/dist/system.src.js"></script>
-        <script src="system.conf.js"></script>
-        <script>System.import('main').catch(function(err){ console.error(err); });</script>
-        <!-- /build -->
-        <!--<script src="main.build.js"></script>-->
     </head>
     <body>
         <hello>Loading...</hello>
+        <!-- build:remove -->
+        <script src="lib/systemjs/dist/system.src.js"></script>
+        <script src="system.conf.js"></script>
+        <script>System.import('main.dev').catch(function(err){ console.error(err); });</script>
+        <!-- /build -->
+        <!--<script src="main.prod.min.js"></script>-->
     </body>
 </html>

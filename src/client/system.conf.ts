@@ -2,7 +2,8 @@
 
     // map tells the System loader where to look for things
     var map = {
-        'main': '',
+        'main.dev': '',
+        'main.prod': '',
         '@angular': 'lib/@angular',
         'rxjs': 'lib/rxjs',
         'moment': 'lib/moment/moment',
@@ -12,7 +13,8 @@
     };
 
     var packages = {
-        'main':                       { main: 'main.js',  defaultExtension: 'js' },
+        'main.dev':                  { main: 'main.dev.js',  defaultExtension: 'js' },
+        'main.prod':                 { main: 'main.prod.js',  defaultExtension: 'js' },
         'rxjs':                      { defaultExtension: 'js' },
     };
 

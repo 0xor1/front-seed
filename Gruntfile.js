@@ -8,16 +8,17 @@ module.exports = function(grunt){
             options: {
                 sfx: true,
                 baseURL: 'src/client',
+                sourceMaps: false,
                 configFile: "src/client/system.conf.js",
-                minify: false,
+                minify: true,
                 build: {
-                    mangle: false
+                    mangle: true
                 }
             },
             test: {
                 files: [{
-                    "src":  "main.js",
-                    "dest": "src/client/main.build.js"
+                    "src":  "main.prod.js",
+                    "dest": "src/client/main.prod.min.js"
                 }]
             }
         },
