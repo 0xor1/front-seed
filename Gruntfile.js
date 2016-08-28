@@ -4,6 +4,24 @@ module.exports = function(grunt){
 
         pkg: grunt.file.readJSON('package.json'),
 
+        systemjs: {
+            options: {
+                sfx: true,
+                baseURL: 'src/client',
+                configFile: "src/client/system.conf.js",
+                minify: true,
+                build: {
+                    mangle: false
+                }
+            },
+            test: {
+                files: [{
+                    "src":  "main.js",
+                    "dest": "src/client/main.min.js"
+                }]
+            }
+        },
+
         htmlmin: {
             build: {
                 options: {
@@ -148,6 +166,7 @@ module.exports = function(grunt){
 
     });
 
+    grunt.loadNpmTasks('grunt-systemjs-builder');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-processhtml');
