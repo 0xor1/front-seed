@@ -35,7 +35,7 @@
   "devDependencies": {
     "typescript": "^1.8.10",
     "systemjs": "^0.19.37",
-    "amdclean": "^2.4.0",
+    "system-text": "^0.1.0",
     "grunt": "^1.0.1",
     "grunt-systemjs-builder": "0.2.7",
     "grunt-contrib-clean": "^1.0.0",

@@ -7,9 +7,8 @@ module.exports = function(grunt){
         systemjs: {
             options: {
                 sfx: true,
-                baseURL: 'src/client',
                 sourceMaps: false,
-                configFile: "src/client/system.conf.js",
+                configFile: "system.config.js",
                 minify: true,
                 build: {
                     mangle: true
@@ -18,7 +17,7 @@ module.exports = function(grunt){
             test: {
                 files: [{
                     "src":  "main.prod.js",
-                    "dest": "src/client/main.prod.min.js"
+                    "dest": "main.prod.min.js"
                 }]
             }
         },
@@ -31,34 +30,34 @@ module.exports = function(grunt){
                 },
                 files: [{
                     expand: true,
-                    cwd: 'build/client/component',
+                    cwd: 'build/component',
                     src: '**/*.html',
-                    dest: 'build/client/component'
+                    dest: 'build/component'
                 }]
             }
         },
 
         'json-minify': {
             build: {
-                files: 'build/client/**/*.json'
+                files: 'build/**/*.json'
             }
         },
 
         exec: {
             buildServer: {
-                cmd: 'go build -o src/server/server.exe -v src/server/server.go'
+                cmd: 'go build -o server.exe -v server.go'
             },
             startDevServer: {
-                cmd: 'cd src/server && ./server.exe'
+                cmd: './server.exe'
             },
             startBuildServer: {
-                cmd: 'cd build/server && ./server.exe'
+                cmd: 'cd build && ./server.exe'
             },
             winStartDevServer: {
-                cmd: 'cd src/server && server.exe'
+                cmd: 'server.exe'
             },
             winStartBuildServer: {
-                cmd: 'cd build/server && server.exe'
+                cmd: 'cd build && server.exe'
             },
             compileTypescript: {
                 cmd: 'tsc'
@@ -67,13 +66,13 @@ module.exports = function(grunt){
                 cmd: 'tsc -w'
             },
             compileDevSass: {
-                cmd: 'node node_modules/node-sass/bin/node-sass --output-style compressed -r -o src/client src/client'
+                cmd: 'node node_modules/node-sass/bin/node-sass --output-style compressed -r -o . .'
             },
             compileBuildSass: {
-                cmd: 'node node_modules/node-sass/bin/node-sass --output-style compressed -r -o build/client build/client'
+                cmd: 'node node_modules/node-sass/bin/node-sass --output-style compressed -r -o . .'
             },
             watchDevSass: {
-                cmd: 'node node_modules/node-sass/bin/node-sass --output-style compressed -w -r -o src/client src/client'
+                cmd: 'node node_modules/node-sass/bin/node-sass --output-style compressed -w -r -o . .'
             },
             updateSeleniumServer: {
                 cmd: 'node node_modules/protractor/bin/webdriver-manager update'
@@ -94,15 +93,15 @@ module.exports = function(grunt){
 
         copy: {
             serverExe: {
-                src: 'src/server/server.exe',
-                dest: 'build/server/server.exe',
+                src: 'server.exe',
+                dest: 'build/server.exe',
                 options : {
                     mode: true
                 }
             },
-            confJson: {
-                src: 'src/server/conf.json',
-                dest: 'build/server/conf.json',
+            serverConfigJson: {
+                src: 'src/server.config.json',
+                dest: 'build/server.config.json',
                 options : {
                     mode: true
                 }
@@ -129,7 +128,7 @@ module.exports = function(grunt){
         uglify: {
             mainJsBuild: {
                 files: {
-                    'build/client/main.js': ['build/client/main.js']
+                    'main.dev.build.min.js': ['main.dev.build.js']
                 }
             }
         },
@@ -137,7 +136,7 @@ module.exports = function(grunt){
         clean: {
             allClientBuildExcept_index_robot_favicon_main_resources: ['build/client/**/*', '!build/client/index.html', '!build/client/main.js', '!build/client/robots.txt', '!build/client/favicon.ico', '!build/client/resource/**'],
             buildCss: ['build/client/**/*.css', '!build/client/resource/**/*.css'],
-            server: ['build/server', 'src/server/server.exe'],
+            server: ['build/server*', 'server.exe'],
             clientBuild: ['build/client'],
             clientTest: ['test/unit/coverage/*','test/unit/results/*'],
             sass: ['src/client/**/*.css'],
@@ -167,8 +166,8 @@ module.exports = function(grunt){
 
     });
 
-    grunt.loadNpmTasks('grunt-systemjs-builder');
     grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-systemjs-builder');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -178,7 +177,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-json-minify');
 
 
-    grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe', 'copy:confJson']);
+    grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe', 'copy:serverConfigJson']);
     grunt.registerTask('cleanServer', ['clean:server']);
 
     grunt.registerTask('buildClient', ['copy:fullClient', 'clean:buildCss', 'exec:compileBuildSass', 'htmlmin:build', 'json-minify:build', 'requirejs:compileMain', 'uglify:mainJsBuild', 'processhtml:clientIndex', 'clean:allClientBuildExcept_index_robot_favicon_main_resources']);
