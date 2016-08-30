@@ -1,13 +1,17 @@
-*/**/*.css
-*/**/*.css.map
-*/**/*.js
-*/**/*.js.map
-*/**/*.exe
+*.css
+*.css.map
+*.js
+*.js.map
+*.exe
 build/
 node_modules/
 test/unit/coverage
 test/unit/results
 test/e2e/results
+
+!Gruntfile.js
+test/unit/tests/*.js
+test/e2e/tests/*.js
 
 npm-debug.log
 *.DS_Store
