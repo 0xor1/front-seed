@@ -4,8 +4,8 @@
     "module": "amd",
     "moduleResolution": "node",
     "sourceMap": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": false,
     "removeComments": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
